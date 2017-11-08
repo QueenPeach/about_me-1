@@ -1,7 +1,25 @@
+body {
+    font-family:              'Domine', sans-serif;
+}
+h1 {
+    font-size:                1.3em;
+}
+h2 {
+    font-size:                1.15em;
+}
 header {
-    text-align: center;
-    color: white;
-    background: black;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    text-align:               left;
+    background:             #c09f80;
+    line-height:              normal;
+    border-bottom-color:    #ffffff;
+    border-bottom-width:      2px;
+}
+main {
+    background-color:       #d7cec7;
+}
+.large-text {
+    color:                  #76323f;
+}
+.small-text {
+    color:                  #565656;
 }
