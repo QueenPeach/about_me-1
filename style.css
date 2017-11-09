@@ -10,6 +10,7 @@ h2 {
     font-size:                1.15em;
 }
 header {
+    font-family:              'Barlow Condensed', sans-serif;
     text-align:               left;
     background:             #c09f80;
     line-height:              normal;
