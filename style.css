@@ -1,5 +1,7 @@
 body {
     font-family:              'Domine', sans-serif;
+    margin-left:              13%;
+    margin-right:             13%;
 }
 h1 {
     font-size:                1.3em;
@@ -13,9 +15,19 @@ header {
     line-height:              normal;
     border-bottom-color:    #ffffff;
     border-bottom-width:      2px;
+    padding:                  1px 20px;
+    margin-bottom:            4px;
+    border-radius:            10px;
 }
 main {
     background-color:       #d7cec7;
+    padding:                  1px 20px;
+    margin-top:               4px;
+    border-radius:            10px;
+}
+.pretty-list {
+    list-style-type:          none;
+    line-height:              20px;
 }
 .large-text {
     color:                  #76323f;
