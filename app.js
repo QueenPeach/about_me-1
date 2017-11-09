@@ -3,6 +3,8 @@
 'use strict';
 
 //---------------------------- Beginning of Code -----------------------------
+var correctAnswerCount = 0;
+var totalQuestionCount = 7;
 var reply;
 var name;
 while (true) {
@@ -87,8 +89,100 @@ for (var i = 0; i < questionAnswerArray.length; i++) {
   if (yesNo === questionAnswerArray[i][1]) {
     console.log('correctAlert:', 'message:', message);
     alert('Excellent, job! You\'re correct! ' + message);
+    correctAnswerCount++;
   } else {
     console.log('inCorrectAlert:', 'message:', message);
     alert('Whoops. You\'re incorrect. ' + message);
   }
+}
+
+var min = 1;
+var max = 30;
+var randomInt = Math.floor(Math.random() * (max - min)) + min;
+var correct = false;
+var numberGuesses = 4;
+for (i = 0; i < numberGuesses; i++) {
+  while (true) {
+    reply = prompt('Please guess my secret number. (hint it is between ' + min + ' and ' + max + ')');
+    if (!reply) {
+      alert('Invalid input. Try again.');
+      continue;
+    }
+    reply = reply.trim();
+    console.log('random int guess:', reply);
+    reply = parseInt(reply, 10);
+    if (!reply) {
+      alert('Invalid input. Try again.');
+      continue;
+    }
+    break;
+  }
+
+  // We have a valid number, but is it correct?
+  if (reply !== randomInt) {
+    alert('Nope. It is a ' + (reply < randomInt ? 'larger' : 'smaller') + ' number.');
+    console.log('incorrect guess:', randomInt);
+  } else {
+    alert('Yay, you guessed correct! The number was ' + randomInt + '.');
+    console.log('correct guess:', randomInt);
+    correctAnswerCount++;
+    correct = true;
+    break;
+  }
+}
+// Were all attempts exhausted without success? :(
+if (!correct) {
+  alert('Well, just for your curiosity, the number was ' + randomInt + '.');
+}
+
+// States I've been to not including washington
+var statesIveBeenTo = [
+  'nebraska',
+  'iowa',
+  'new york',
+  'oregon',
+  'california',
+  'texas',
+  'louisiana',
+  'arizona',
+  'idaho',
+  'wyoming',
+  'montana',
+  'south dakota'
+];
+
+// Have them guess one of those states
+for (i = 0; i < numberGuesses; i++) {
+  while (true) {
+    reply = prompt('Please guess a state I\'ve been to (not including Washington).');
+    console.log('state guess:', reply);
+    if (!reply) {
+      alert('Invalid input. Try again.');
+      continue;
+    }
+    reply = reply.trim().toLowerCase();
+    break;
+  }
+
+  // Correct guess?
+  if (statesIveBeenTo.includes(reply)) {
+    alert('Wonderful guess! You are correct!');
+    correctAnswerCount++;
+    break;
+  } else {
+    alert('Incorrect. I\'ve been meaning to go there though.');
+  }
+}
+// Tell them
+var statesString = '\n';
+for (i = 0; i < statesIveBeenTo.length; i++) {
+  statesString = statesString.concat(statesIveBeenTo[i] + '\n');
+}
+alert('In case you wondered, here are all the states I\'ve been to not including Washington:\n' + statesString);
+
+// Report correct number of questions
+if (correctAnswerCount === totalQuestionCount) {
+  alert('Bravo, you got all ' + correctAnswerCount + ' out of ' + totalQuestionCount + ' questions correct.');
+} else {
+  alert('Keep striving for perfection! You got ' + correctAnswerCount + ' out of ' + totalQuestionCount + ' questions correct this time.');
 }
