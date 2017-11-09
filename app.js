@@ -2,32 +2,63 @@
 /* jshint -W117 */
 'use strict';
 
-function getName() {
-  var rawName;
-  var name;
-
-  while (true) {
-    rawName = prompt('What is your first name?');
-    if (!rawName) {
-      console.log('false rawName:', rawName);
-      alert('Invalid input, try again.');
-      continue;
-    }
-
-    rawName = rawName.trim().toLowerCase();
-    name = rawName.charAt(0).toUpperCase() + rawName.substr(1);
-    console.log('goodname:', 'name:', name);
-    break;
+//---------------------------- Beginning of Code -----------------------------
+var reply;
+var name;
+while (true) {
+  reply = prompt('What is your first name?');
+  if (!reply) {
+    console.log('false reply:', reply);
+    alert('Invalid input, try again.');
+    continue;
   }
 
-  return name;
+  reply = reply.trim().toLowerCase();
+  name = reply.charAt(0).toUpperCase() + reply.substr(1);
+  console.log('goodname:', 'name:', name);
+  break;
 }
+alert('Hello ' + name + '. Let\'s play a quick game. Answer the next five yes/no questions with your prediction.');
 
-function boolQuestion(question) {
-  var reply;
-  var yesNo = false;
+// Each nested array contains the question, correct answer, & a response
+var questionAnswerArray = [
+  [
+    ', am I less then 65 years old',
+    true,
+    'I am 30 years old.'
+  ],
+  [
+    ', do you think I\'m a Washington born and raised',
+    false,
+    'I was born and raised in Nebraska.'
+  ],
+  [
+    ', do you think Seattle is my favorite city',
+    true,
+    'Seattle is my all-time favorite city!'
+  ],
+  [
+    ', do you think I enjoy using Linux over other Operating Systems',
+    true,
+    'I am a huge fan of Linux! Specifically Arch Linux using i3 window manager.'
+  ],
+  [
+    ', would you believe me if I told you I have two Yorkshire Terriers',
+    true,
+    'Their names are Charlie and Cookie.'
+  ],
+];
+
+/*
+ * Ask yes/no questions
+ */
+var yesNo;
+var message;
+for (var i = 0; i < questionAnswerArray.length; i++) {
+  yesNo = false;
   while (true) {
-    reply = prompt(question + ' [y/N]?');
+    message = name + questionAnswerArray[i][0];
+    reply = prompt(message + ' [y/N]?');
     if (!reply) {
       console.log('false reply:', reply);
       alert('Invalid input, try again.');
@@ -48,43 +79,16 @@ function boolQuestion(question) {
     alert('Invalid input, try again.');
     console.log('invalid reply:', reply);
   }
-  return yesNo;
-}
 
-function correctAlert(message) {
-  console.log('correctAlert:', 'message:', message);
-  alert('Excellent, job! You\'re correct! ' + message);
-}
-
-function inCorrectAlert(message) {
-  console.log('inCorrectAlert:', 'message:', message);
-  alert('Whoops. You\'re incorrect. ' + message);
-}
-
-function accuracyAlert(actual, expected, message) {
-  console.log('accuracyAlert:', 'actual:', actual, 'expected:', expected);
-  if (expected === actual) {
-    correctAlert(message);
+  /*
+   * Report correctness
+   */
+  message = questionAnswerArray[i][2];
+  if (yesNo === questionAnswerArray[i][1]) {
+    console.log('correctAlert:', 'message:', message);
+    alert('Excellent, job! You\'re correct! ' + message);
   } else {
-    inCorrectAlert(message);
+    console.log('inCorrectAlert:', 'message:', message);
+    alert('Whoops. You\'re incorrect. ' + message);
   }
 }
-
-//---------------------------- Beginning of Code -----------------------------
-var name = getName();
-alert('Hello ' + name + '. Let\'s play a quick game. Answer yes/no to following questions based on your prediction of truthiness.');
-
-var underSixtyFive = boolQuestion(name + ', am I less then 65 years old');
-accuracyAlert(underSixtyFive, true, name + '. I am 30 years old.');
-
-var fromWashington = boolQuestion(name + ', do you think I\'m a Washington born and raised');
-accuracyAlert(fromWashington, false, name + ', I was born and raised in Nebraska.');
-
-var seattleFavoriteCity = boolQuestion(name + ', do you think Seattle is my favorite city');
-accuracyAlert(seattleFavoriteCity, true, name + ', Seattle is my all-time favorite city!');
-
-var linuxIsAwesome = boolQuestion(name + ', do you think I enjoy using Linux over other Operating Systems');
-accuracyAlert(linuxIsAwesome, true, name + ', I am a huge fan of Linux! Specifically Arch Linux using i3 window manager.');
-
-var twoDogs = boolQuestion(name + ', would you believe me if I told you I have two Yorkshire Terriers');
-accuracyAlert(twoDogs, true, name + ', Their names are Charlie and Cookie.');
