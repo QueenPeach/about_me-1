@@ -6,7 +6,7 @@
 var correctAnswerCount = 0;
 var totalQuestionCount = 7;
 var reply;
-var name;
+var userName;
 while (true) {
   reply = prompt('What is your first name?');
   if (!reply) {
@@ -16,11 +16,11 @@ while (true) {
   }
 
   reply = reply.trim().toLowerCase();
-  name = reply.charAt(0).toUpperCase() + reply.substr(1);
-  console.log('goodname:', 'name:', name);
+  userName = reply.charAt(0).toUpperCase() + reply.substr(1);
+  console.log('goodname:', 'name:', userName);
   break;
 }
-alert('Hello ' + name + '. Let\'s play a quick game. Answer the next five yes/no questions with your prediction.');
+alert('Hello ' + userName + '. Let\'s play a quick game. Answer the next five yes/no questions with your prediction.');
 
 // Each nested array contains the question, correct answer, & a response
 var questionAnswerArray = [
@@ -59,7 +59,7 @@ var message;
 for (var i = 0; i < questionAnswerArray.length; i++) {
   yesNo = false;
   while (true) {
-    message = name + questionAnswerArray[i][0];
+    message = userName + questionAnswerArray[i][0];
     reply = prompt(message + ' [y/N]?');
     if (!reply) {
       console.log('false reply:', reply);
