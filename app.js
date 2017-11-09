@@ -1,71 +1,73 @@
+/* jshint -W097 */
+/* jshint -W117 */
 'use strict';
 
 function getName() {
-    var rawName;
-    var name;
+  var rawName;
+  var name;
 
-    while (true) {
-        rawName = prompt('What is your first name?');
-        if (!rawName) {
-            console.log('false rawName:', rawName);
-            alert('Invalid input, try again.');
-            continue;
-        }
-
-        rawName = rawName.trim().toLowerCase()
-        name = rawName.charAt(0).toUpperCase() + rawName.substr(1);
-        console.log('goodname:', 'name:', name);
-        break;
+  while (true) {
+    rawName = prompt('What is your first name?');
+    if (!rawName) {
+      console.log('false rawName:', rawName);
+      alert('Invalid input, try again.');
+      continue;
     }
 
-    return name;
+    rawName = rawName.trim().toLowerCase();
+    name = rawName.charAt(0).toUpperCase() + rawName.substr(1);
+    console.log('goodname:', 'name:', name);
+    break;
+  }
+
+  return name;
 }
 
-function boolQuestion(question='') {
-    var reply;
-    var yesNo = false;
-    while (true) {
-        reply = prompt(question + ' [y/N]?');
-        if (!reply) {
-            console.log('false reply:', reply);
-            alert('Invalid input, try again.');
-            continue;
-        }
-        console.log('reply:', reply);
-
-        reply = reply.trim().toLowerCase();
-        console.log('cleaned reply:', reply);
-        if (reply === 'y' || reply === 'ye' || reply === 'yes') {
-            yesNo = true;
-            break;
-        } else if (reply === 'n' || reply === 'no') {
-            yesNo = false;
-            break;
-        }
-
-        alert("Invalid input, try again.");
-        console.log('invalid reply:', reply);
+function boolQuestion(question) {
+  var reply;
+  var yesNo = false;
+  while (true) {
+    reply = prompt(question + ' [y/N]?');
+    if (!reply) {
+      console.log('false reply:', reply);
+      alert('Invalid input, try again.');
+      continue;
     }
-    return yesNo;
+    console.log('reply:', reply);
+
+    reply = reply.trim().toLowerCase();
+    console.log('cleaned reply:', reply);
+    if (reply === 'y' || reply === 'ye' || reply === 'yes') {
+      yesNo = true;
+      break;
+    } else if (reply === 'n' || reply === 'no') {
+      yesNo = false;
+      break;
+    }
+
+    alert('Invalid input, try again.');
+    console.log('invalid reply:', reply);
+  }
+  return yesNo;
 }
 
-function correctAlert(message='') {
-    console.log('correctAlert:', 'message:', message);
-    alert('Excellent, job! You\'re correct! ' + message);
+function correctAlert(message) {
+  console.log('correctAlert:', 'message:', message);
+  alert('Excellent, job! You\'re correct! ' + message);
 }
 
-function inCorrectAlert(message='') {
-    console.log('inCorrectAlert:', 'message:', message);
-    alert('Whoops. You\'re incorrect. ' + message);
+function inCorrectAlert(message) {
+  console.log('inCorrectAlert:', 'message:', message);
+  alert('Whoops. You\'re incorrect. ' + message);
 }
 
 function accuracyAlert(actual, expected, message) {
-    console.log('accuracyAlert:', 'actual:', actual, 'expected:', expected);
-    if (expected === actual) {
-        correctAlert(message);
-    } else {
-        inCorrectAlert(message);
-    }
+  console.log('accuracyAlert:', 'actual:', actual, 'expected:', expected);
+  if (expected === actual) {
+    correctAlert(message);
+  } else {
+    inCorrectAlert(message);
+  }
 }
 
 //---------------------------- Beginning of Code -----------------------------
@@ -84,8 +86,5 @@ accuracyAlert(seattleFavoriteCity, true, name + ', Seattle is my all-time favori
 var linuxIsAwesome = boolQuestion(name + ', do you think I enjoy using Linux over other Operating Systems');
 accuracyAlert(linuxIsAwesome, true, name + ', I am a huge fan of Linux! Specifically Arch Linux using i3 window manager.');
 
-var pythonPath = boolQuestion(name + ', do you think I\'ll be pursuing the Python CodeFellows path');
-accuracyAlert(pythonPath, false, name + ', I will be proceeding down the JavaScript route.');
-
 var twoDogs = boolQuestion(name + ', would you believe me if I told you I have two Yorkshire Terriers');
-accuracyAlerrt(twoDogs, true, name + ', Their names are Charlie and Cookie.');
+accuracyAlert(twoDogs, true, name + ', Their names are Charlie and Cookie.');
