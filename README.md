@@ -6,5 +6,5 @@ good at. Enjoy.
 
 ## Authors
 
-Ashley Jordan
+Ashley Jordan  
 Steve Carpenter
